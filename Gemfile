@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'activesupport', '~> 4.0'
+gem 'jbuilder', '~> 2.1'
 
 group :development, :test do
   gem 'pry', '~> 0.10'

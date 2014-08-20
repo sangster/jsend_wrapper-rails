@@ -18,12 +18,12 @@ end
 
 Jeweler::Tasks.new do |gem|
   gem.name = 'jsend_wrapper-rails'
-  gem.version = GtfsReader::Version.to_s
+  gem.version = JsendWrapper::Version.to_s
   gem.homepage = 'http://github.com/sangster/jsend_wrapper-rails'
   gem.license = 'GPL 3'
   gem.summary = 'Wraps JSON in a JSend envelope'
   gem.description = <<-EOF.strip.gsub /\s+/, ' '
-    TODO Some description here.
+    Some description here.
   EOF
   gem.email = 'jon@ertt.ca'
   gem.authors = ['Jon Sangster']
