@@ -302,5 +302,5 @@ HTTP header(s) are most appropriate to the corresponding body.
 
 ### License
 
-The JSend specification (this page) is covered under a
+The JSend specification is covered under a
 [License modified BSD License](http://labs.omniti.com/labs/jsend/wiki/License)
