@@ -17,4 +17,6 @@ JsendWrapper = Module.new
 
 if defined? Rails
   require_relative 'jsend_wrapper/rails/railtie'
+else
+  STDERR.puts 'WARN: Rails is not defined! jsend_wrapper-rails cannot load.'
 end

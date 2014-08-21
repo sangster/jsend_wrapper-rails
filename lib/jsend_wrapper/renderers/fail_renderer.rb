@@ -19,10 +19,10 @@ module JsendWrapper
   # Wraps the given message in a JSend Failure. JSend Failures have two required
   # elements (status, data).
   class FailRenderer < Renderer
-    attr_accessor :data
+    attr_reader :data
 
-    def initialize(obj)
-      self.data = obj
+    def initialize(data)
+      @data = data
     end
 
     def call

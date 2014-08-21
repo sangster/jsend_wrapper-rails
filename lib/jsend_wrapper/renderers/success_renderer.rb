@@ -19,10 +19,10 @@ module JsendWrapper
   # Wraps the given message in a JSend Success. JSend Successs have two required
   # elements (status, data).
   class SuccessRenderer < Renderer
-    attr_accessor :data
+    attr_reader :data
 
-    def initialize(obj)
-      self.data = obj
+    def initialize(data)
+      @data = data
     end
 
     def call

@@ -81,7 +81,7 @@ json.year  1999
 
 #### Handling Errors
 
-You can use `rescue_from` to automatically handle errors: 
+You can use `rescue_from` to automatically handle errors:
 
 ```ruby
 rescue_from ActiveRecord::RecordNotFound do
@@ -118,7 +118,7 @@ end
    of responses.  Also, this helps promote happiness and unity between backend
    developers and frontend designers, as everyone can come to expect a common
    approach to interacting with one another.
- * **Hold on now, aren't there already specs for this kind of thing?** - 
+ * **Hold on now, aren't there already specs for this kind of thing?** -
    Well... no.  While there are a few handy specifications for dealing with JSON
    data, most notably [Douglas Crockford](http://www.crockford.com/)'s
    [JSONRequest](http://www.json.org/JSONRequest.html) proposal, there's nothing
@@ -171,7 +171,7 @@ required and optional keys for each type:
     <tr>
       <td>fail</td>
       <td>
-        There was a problem with the data submitted, or some pre-condition of 
+        There was a problem with the data submitted, or some pre-condition of
         the API call wasn't satisfied.
       </td>
       <td>status, message</td>
@@ -180,7 +180,7 @@ required and optional keys for each type:
     <tr>
       <td>error</td>
       <td>
-        An error occurred in processing the request, i.e. an exception was 
+        An error occurred in processing the request, i.e. an exception was
         thrown.
       </td>
       <td>status, message</td>
@@ -219,7 +219,7 @@ simple envelope for the results, using the {{{data}}} key, as in the following:
   "status": "success",
   "data": {
     "id": 2,
-    "title": "Another blog post", 
+    "title": "Another blog post",
     "body": "More content"
   }
 }
@@ -263,8 +263,8 @@ Required keys:
 **`GET /posts.json`**:
 ```json
 {
-    "status" : "error",
-    "message" : "A title is required"
+    "status": "error",
+    "message": "A title is required"
 }
 ```
 
@@ -277,7 +277,7 @@ Optional keys:
  * code: A numeric code corresponding to the error, if applicable
  * data: A generic container for any other information about the error, i.e. the
    conditions that caused the error, stack traces, etc.
- 
+
 ### Whither HTTP?
 
 But wait, you ask, doesn't HTTP already provide a way to communicate response
