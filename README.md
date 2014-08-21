@@ -32,7 +32,7 @@ in these two examples:
 
 `render jsend: {error: 'too bad'}`
 
-*Result*:
+**Result**:
 ```json
 {
   "status": "error",
@@ -42,7 +42,7 @@ in these two examples:
 
 `render jsend: {error: 'too bad', data: nil}`
 
-*Result*:
+**Result**:
 ```json
 {
   "status": "error",
@@ -60,18 +60,18 @@ extension. These views are rendered by `Jbuilder`, exactly as if they were
 named with a `.jbuilder` extension instead. These views will be wrapped in a
 JSend Success container.
 
-*Example*: `app/views/posts/show.json.jsend`
+**Example**: `app/views/posts/show.json.jsend`
 ```ruby
 json.title 'The Pragmatic Programmer'
 json.year  1999
 ```
 
-*Result*:
+**Result**:
 ```json
 {
   "status": "success",
   "data": {
-    "title": "The Pragmatic Programmer"
+    "title": "The Pragmatic Programmer",
     "year": 1999
   }
 }
@@ -90,8 +90,8 @@ rescue_from ActiveRecord::RecordNotFound do
 end
 ```
 
-*Example*: `GET /posts/1234.json`:
-```
+**Example**: `GET /posts/1234.json`:
+```json
 {
   "status": "error",
   "message": "record not found",
@@ -137,10 +137,14 @@ end
 A basic JSend-compliant response is as simple as this:
 ```json
 {
-    status : "success",
-    data : {
-        "post" : { "id" : 1, "title" : "A blog post", "body" : "Some useful content" }
+  "status": "success",
+  "data": {
+    "post": {
+      "id": 1,
+      "title": "A blog post",
+      "body": "Some useful content"
      }
+  }
 }
 ```
 
@@ -193,29 +197,39 @@ simple envelope for the results, using the {{{data}}} key, as in the following:
 **`GET /posts.json`:**
 ```json
 {
-    status : "success",
-    data : {
-        "posts" : [
-            { "id" : 1, "title" : "A blog post", "body" : "Some useful content" },
-            { "id" : 2, "title" : "Another blog post", "body" : "More content" },
-        ]
-     }
+  "status: "success",
+  "data: [
+    {
+      "id": 1,
+      "title": "A blog post",
+      "body": "Some useful content"
+    },
+    {
+      "id": 2,
+      "title": "Another blog post",
+      "body": "More content"
+    },
+  ]
 }
 ```
 
 **`GET /posts/2.json`:**
 ```json
 {
-    status : "success",
-    data : { "post" : { "id" : 2, "title" : "Another blog post", "body" : "More content" }}
+  status: "success",
+  data: {
+    "id": 2,
+    "title": "Another blog post", 
+    "body": "More content"
+  }
 }
 ```
 
 **`DELETE /posts/2.json`:**
 ```json
 {
-    status : "success",
-    data : null
+  status: "success",
+  data: null
 }
 ```
 
@@ -231,16 +245,18 @@ typically a hash of validation errors.  For example:
 **`POST /posts.json`** (with data `body: "Trying to creating a blog post"`):
 ```json
 {
-    "status" : "fail",
-    "data" : { "title" : "A title is required" }
+  "status": "fail",
+  "data": {
+    "title": "A title is required"
+  }
 }
 ```
 
 Required keys:
  * status: Should always be set to "fail".
  * data: Again, provides the wrapper for the details of why the request failed.
-   If the reasons for failure correspond to {{{POST}}} values, the response
-   object's keys SHOULD correspond to those {{{POST}}} values.
+   If the reasons for failure correspond to `POST` values, the response
+   object's keys *should* correspond to those `POST` values.
 
 **Error**: When an API call fails due to an error on the server.  For example:
 
