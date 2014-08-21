@@ -13,8 +13,20 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-JsendWrapper = Module.new
+require_relative 'renderer'
 
-if defined? Rails
-  require_relative 'jsend_wrapper/rails/railtie'
+module JsendWrapper
+  # Wraps the given message in a JSend Failure. JSend Failures have two required
+  # elements (status, data).
+  class FailRenderer < Renderer
+    attr_accessor :data
+
+    def initialize(obj)
+      self.data = obj
+    end
+
+    def call
+      %[{"status":"fail","data":#{json_string data}}]
+    end
+  end
 end

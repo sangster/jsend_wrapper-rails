@@ -13,8 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-JsendWrapper = Module.new
-
-if defined? Rails
-  require_relative 'jsend_wrapper/rails/railtie'
-end
+require_relative 'renderers/success_renderer'
+require_relative 'renderers/fail_renderer'
+require_relative 'renderers/error_renderer'

@@ -13,8 +13,31 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-JsendWrapper = Module.new
+module JsendWrapper
+  module Rails
+    class TemplateHandler
+      def self.call(template)
+        json_handler = ActionView::Template.registered_template_handler :jbuilder
+        json = json_handler.call template
 
-if defined? Rails
-  require_relative 'jsend_wrapper/rails/railtie'
+        <<-RUBY
+          content = instance_eval #{json.inspect}
+          JsendWrapper::Handlers::Success.new(self).render content
+        RUBY
+      end
+
+
+      #@param view [ActiveView::Base]
+      def initialize(view)
+        @view = view
+      end
+
+
+      #@param json [String]
+      def render(json, *)
+        json = 'null' if !json || json.empty?
+        %[{"status":"success","data":#{json}}]
+      end
+    end
+  end
 end

@@ -13,8 +13,18 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-JsendWrapper = Module.new
+module JsendWrapper
+  class Renderer
+  protected
 
-if defined? Rails
-  require_relative 'jsend_wrapper/rails/railtie'
+    def json_string(obj)
+      if obj.respond_to? :to_json
+        obj.to_json
+      elsif obj.nil?
+        'null'
+      else
+        obj.to_s.to_json
+      end
+    end
+  end
 end

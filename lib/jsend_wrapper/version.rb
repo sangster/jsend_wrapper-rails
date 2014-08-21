@@ -1,11 +1,26 @@
+# jsend_wrapper-rails: Wrap JSON views in JSend containers
+# Copyright (C) 2014 Jon Sangster
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 module JsendWrapper
-  # This module both contains the current version of GtfsReader, but also has a
+  # This module contains the current version of the gem, but also has a
   # {Bumper} class which will modify this file to increase the version
   module Version
     # The following four lines are generated, so don't mess with them.
     MAJOR = 0
     MINOR = 0
-    PATCH = 1
+    PATCH = 0
     BUILD = nil
 
     #@return [String] the current version in the form of +1.2.3.build+
