@@ -197,8 +197,8 @@ simple envelope for the results, using the {{{data}}} key, as in the following:
 **`GET /posts.json`:**
 ```json
 {
-  "status: "success",
-  "data: [
+  "status": "success",
+  "data": [
     {
       "id": 1,
       "title": "A blog post",
@@ -216,8 +216,8 @@ simple envelope for the results, using the {{{data}}} key, as in the following:
 **`GET /posts/2.json`:**
 ```json
 {
-  status: "success",
-  data: {
+  "status": "success",
+  "data": {
     "id": 2,
     "title": "Another blog post", 
     "body": "More content"
@@ -228,8 +228,8 @@ simple envelope for the results, using the {{{data}}} key, as in the following:
 **`DELETE /posts/2.json`:**
 ```json
 {
-  status: "success",
-  data: null
+  "status": "success",
+  "data": null
 }
 ```
 
