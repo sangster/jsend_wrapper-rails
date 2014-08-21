@@ -35,7 +35,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = 'GPL 3'
   gem.summary = 'Wraps JSON in a JSend envelope'
   gem.description = <<-EOF.strip.gsub /\s+/, ' '
-    Some description here.
+    { "status": "success", "data": "Wraps JSON views in JSend containers" }
   EOF
   gem.email = 'jon@ertt.ca'
   gem.authors = ['Jon Sangster']
