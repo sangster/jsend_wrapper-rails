@@ -13,7 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-require_relative '../renderers'
+require 'active_support/core_ext/hash/slice'
+require 'jsend_wrapper/renderers'
 
 module JsendWrapper
   # Parses the "render jsend: {...}" command. Valid forms:

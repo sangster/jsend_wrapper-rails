@@ -20,7 +20,7 @@ module JsendWrapper
     class Railtie < ::Rails::Railtie
       initializer 'jsend_wrapper-rails.initialization' do
         if JsendWrapper::Rails.jbuilder_available?
-          JsendWrapper::Rails.install_template
+          JsendWrapper::Rails.install_template_handler
         end
         JsendWrapper::Rails.install_render_option
       end
@@ -32,14 +32,16 @@ module JsendWrapper
       require 'jbuilder'
       true
     rescue LoadError
-      STDERR.puts 'WARN: Please include the "jbuilder" gem for .jsend templates'
+      $stderr.puts 'WARN: Please include the "jbuilder" gem for .jsend templates'
       false
     end
 
     # Install a "template handler" for .jsend view files. These files will be
     # processed with {Jbuilder}, just like .jbuilder view files, but the result
     # will be wrapped in a "success" JSend wrapper.
-    def self.install_template
+    def self.install_template_handler
+      require 'jsend_wrapper/rails/template_handler'
+
       ActionView::Template.register_template_handler \
         :jsend, JsendWrapper::Rails::TemplateHandler
     end
@@ -47,7 +49,7 @@ module JsendWrapper
 
     # Adds the "jsend:" option to {ActiveController::Base#render}
     def self.install_render_option
-      require_relative 'render_option'
+      require 'jsend_wrapper/rails/render_option'
 
       ActionController::Renderers.add :jsend do |value, _|
         self.content_type ||= Mime::JSON

@@ -13,8 +13,18 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-if defined? Rails
-  require 'jsend_wrapper/rails/railtie'
-else
-  $stderr.puts 'WARN: Rails is not defined! jsend_wrapper-rails cannot load.'
+require 'jsend_wrapper/renderers'
+
+RSpec.describe 'require "renderers"' do
+  it 'includes SuccessRenderer' do
+    expect { JsendWrapper::SuccessRenderer }.not_to raise_error
+  end
+
+  it 'includes FailRenderer' do
+    expect { JsendWrapper::FailRenderer }.not_to raise_error
+  end
+
+  it 'includes ErrorRenderer' do
+    expect { JsendWrapper::ErrorRenderer }.not_to raise_error
+  end
 end

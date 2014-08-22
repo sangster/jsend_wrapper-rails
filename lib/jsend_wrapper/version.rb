@@ -19,8 +19,8 @@ module JsendWrapper
   module Version
     # The following four lines are generated, so don't mess with them.
     MAJOR = 0
-    MINOR = 1
-    PATCH = 3
+    MINOR = 2
+    PATCH = 0
     BUILD = nil
 
     #@return [String] the current version in the form of +1.2.3.build+
@@ -51,7 +51,6 @@ module JsendWrapper
                        "BUILD = #{parts[:build] || 'nil'}"].join( '\1' )
 
         out_data = File.read( @filename ).gsub PATTERN, text
-        #puts out_data
         File.open( @filename, 'w' ) { |out| out << out_data }
         puts "Bumped version to #{to_s}"
       end
