@@ -51,7 +51,6 @@ module JsendWrapper
                        "BUILD = #{parts[:build] || 'nil'}"].join( '\1' )
 
         out_data = File.read( @filename ).gsub PATTERN, text
-        #puts out_data
         File.open( @filename, 'w' ) { |out| out << out_data }
         puts "Bumped version to #{to_s}"
       end

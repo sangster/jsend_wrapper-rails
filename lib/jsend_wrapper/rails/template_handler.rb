@@ -22,7 +22,7 @@ module JsendWrapper
 
         <<-RUBY
           content = instance_eval #{json.inspect}
-          JsendWrapper::Handlers::Success.new(self).render content
+          JsendWrapper::Rails::TemplateHandler.new(self).render content
         RUBY
       end
 

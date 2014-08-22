@@ -102,7 +102,10 @@ end
 }
 ```
 
-## JSend Spec
+## JSend Specification
+
+*This section is copied from [omniti.com](http://labs.omniti.com/labs/jsend)
+under via a modified BSD License (see below).*
 
  * **What?** - Put simply, JSend is a specification that lays down some rules
    for how [JSON](http://json.org) responses from web servers should be

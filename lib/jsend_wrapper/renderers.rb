@@ -13,6 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-require_relative 'renderers/success_renderer'
-require_relative 'renderers/fail_renderer'
-require_relative 'renderers/error_renderer'
+require 'jsend_wrapper/renderers/success_renderer'
+require 'jsend_wrapper/renderers/fail_renderer'
+require 'jsend_wrapper/renderers/error_renderer'
