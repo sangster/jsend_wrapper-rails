@@ -32,7 +32,9 @@ The elements `code` and `data` are optional for JSend Error containers. If you
 leave them out, they will be absent from the rendered JSON. Note the differences
 in these two examples:
 
-`render jsend: {error: 'too bad'}`
+```ruby
+render jsend: {error: 'too bad'}`
+```
 
 **Result**:
 ```json
@@ -42,7 +44,9 @@ in these two examples:
 }
 ```
 
-`render jsend: {error: 'too bad', data: nil}`
+```ruby
+render jsend: {error: 'too bad', data: nil}`
+```
 
 **Result**:
 ```json
