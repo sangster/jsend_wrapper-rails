@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-# For people who don't get rubygem.org's naming scheme
-require 'jsend_wrapper/rails'
+if defined? Rails
+  require 'jsend_wrapper/rails/railtie'
+else
+  $stderr.puts 'WARN: Rails is not defined! jsend_wrapper-rails cannot load.'
+end
