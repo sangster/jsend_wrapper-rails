@@ -1,5 +1,7 @@
 # Rails JSend Wrapper
 
+[![Build Status](https://travis-ci.org/sangster/jsend_wrapper-rails.svg?branch=master)](https://travis-ci.org/sangster/jsend_wrapper-rails)
+
 ## Usage
 
 Add the following lines to your Gemfile:
