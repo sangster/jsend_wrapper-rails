@@ -13,13 +13,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-require_relative 'renderer'
+require 'jsend_wrapper/renderers/renderer'
 
 module JsendWrapper
   # Wraps the given message in a JSend Error. JSend Errors have two required
   # elements (status, message) and two optional elements (code, data).
   class ErrorRenderer < Renderer
-    attr_accessor :message, :has_code, :code, :has_data, :data
+    attr_reader :message, :has_code, :code, :has_data, :data
 
     alias_method :code?, :has_code
     alias_method :data?, :has_data
@@ -30,18 +30,18 @@ module JsendWrapper
     #@option optional [Object] :data a generic container for any other
     #  information about the error
     def initialize(message, optional)
-      self.message  = message.to_s
-      self.has_code = optional.key? :code
-      self.has_data = optional.key? :data
+      @message  = message.to_s
+      @has_code = optional.key? :code
+      @has_data = optional.key? :data
 
-      self.code = parse_code optional[:code] if code?
-      self.data = optional[:data]            if data?
+      @code = parse_code optional[:code] if code?
+      @data = optional[:data]            if data?
     end
 
 
     #@return [String] the rendered JSON
     def call
-      %[{"status":"error","message":#{message.to_json}#{optional}}]
+      %[{"status":"error","message":#{message.inspect}#{optional}}]
     end
 
 
@@ -49,11 +49,8 @@ module JsendWrapper
 
 
     def parse_code(code)
-      if code.respond_to? :to_i
-        code.to_i
-      else
-        raise '"code" must respond to #to_i'
-      end
+      raise '"code" must respond to #to_i' unless code.respond_to? :to_i
+      code.to_i
     end
 
 

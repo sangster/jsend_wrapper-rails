@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+require 'json'
+
 module JsendWrapper
   class Renderer
   protected
@@ -23,7 +25,7 @@ module JsendWrapper
       elsif obj.nil?
         'null'
       else
-        obj.to_s.to_json
+        JSON.dump obj
       end
     end
   end

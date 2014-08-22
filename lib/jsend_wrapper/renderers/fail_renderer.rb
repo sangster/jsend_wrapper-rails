@@ -13,16 +13,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-require_relative 'renderer'
+require 'jsend_wrapper/renderers/renderer'
 
 module JsendWrapper
   # Wraps the given message in a JSend Failure. JSend Failures have two required
   # elements (status, data).
   class FailRenderer < Renderer
-    attr_accessor :data
+    attr_reader :data
 
-    def initialize(obj)
-      self.data = obj
+    def initialize(data)
+      @data = data
     end
 
     def call
