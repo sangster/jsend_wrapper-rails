@@ -127,9 +127,9 @@ To use these renderers, construct them with the same arguments as you pass to
 the `render` statements listed above.
 
 ```ruby
-renderer = JsendWrapper::SuccessRenderer @data
-renderer = JsendWrapper::FailRenderer 'a message'
-renderer = JsendWrapper::ErrorRenderer 'a message', code: 123, data: @data
+renderer = JsendWrapper::SuccessRenderer.new @data
+renderer = JsendWrapper::FailRenderer.new 'a message'
+renderer = JsendWrapper::ErrorRenderer.new 'a message', code: 123, data: @data
 
 json = renderer.to_s
 hash = renderer.to_h
