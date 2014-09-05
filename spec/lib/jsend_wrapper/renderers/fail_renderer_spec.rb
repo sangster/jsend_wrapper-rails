@@ -26,12 +26,13 @@ RSpec.describe JsendWrapper::FailRenderer do
     end
   end
 
-  describe '#call' do
+  describe '#to_s and #to_h' do
     context 'with nil' do
       let(:data) { nil }
 
       it 'should convert nil to null' do
-        expect( renderer.call ).to eq '{"status":"fail","data":null}'
+        expect( renderer.to_s ).to eq '{"status":"fail","data":null}'
+        expect( renderer.to_h ).to eq( status: 'fail', data: nil )
       end
     end
 
@@ -39,7 +40,8 @@ RSpec.describe JsendWrapper::FailRenderer do
       let(:data) { 1234 }
 
       it 'should print unquoted' do
-        expect( renderer.call ).to eq '{"status":"fail","data":1234}'
+        expect( renderer.to_s ).to eq '{"status":"fail","data":1234}'
+        expect( renderer.to_h ).to eq( status: 'fail', data: 1234 )
       end
     end
 
@@ -47,7 +49,8 @@ RSpec.describe JsendWrapper::FailRenderer do
       let(:data) { {dog: 'bark', cat: {happy: 'purr', mad: 'hiss'}} }
 
       it 'should convert entire hierarchy' do
-        expect( renderer.call ).to eq '{"status":"fail","data":{"dog":"bark","cat":{"happy":"purr","mad":"hiss"}}}'
+        expect( renderer.to_s ).to eq '{"status":"fail","data":{"dog":"bark","cat":{"happy":"purr","mad":"hiss"}}}'
+        expect( renderer.to_h ).to eq( status: 'fail', data: {dog: 'bark', cat: {happy: 'purr', mad: 'hiss'}} )
       end
     end
 
@@ -55,7 +58,8 @@ RSpec.describe JsendWrapper::FailRenderer do
       let(:data) { [1, 2, 3, 4] }
 
       it 'should convert to a JSON array' do
-        expect( renderer.call ).to eq '{"status":"fail","data":[1,2,3,4]}'
+        expect( renderer.to_s ).to eq '{"status":"fail","data":[1,2,3,4]}'
+        expect( renderer.to_h ).to eq( status: 'fail', data: [1,2,3,4] )
       end
     end
   end

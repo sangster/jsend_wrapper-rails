@@ -82,10 +82,11 @@ RSpec.describe JsendWrapper::ErrorRenderer do
   end
 
 
-  describe '#call' do
+  describe '#to_s and #to_h' do
     context 'with no optional elements' do
       it 'only has "status" and "message"' do
-        expect( renderer.call ).to eq '{"status":"error","message":"BOOM!"}'
+        expect( renderer.to_s ).to eq '{"status":"error","message":"BOOM!"}'
+        expect( renderer.to_h ).to eq( status: 'error', message: 'BOOM!' )
       end
     end
 
@@ -93,7 +94,8 @@ RSpec.describe JsendWrapper::ErrorRenderer do
       let(:optional) { {code: 4446} }
 
       it 'includes the code element' do
-        expect( renderer.call ).to eq '{"status":"error","message":"BOOM!","code":4446}'
+        expect( renderer.to_s ).to eq '{"status":"error","message":"BOOM!","code":4446}'
+        expect( renderer.to_h ).to eq( status: 'error', message: 'BOOM!', code: 4446 )
       end
     end
 
@@ -101,14 +103,16 @@ RSpec.describe JsendWrapper::ErrorRenderer do
       let(:optional) { {data: {moo: 'cow'}} }
 
       it 'also includes the data element' do
-        expect( renderer.call ).to eq '{"status":"error","message":"BOOM!","data":{"moo":"cow"}}'
+        expect( renderer.to_s ).to eq '{"status":"error","message":"BOOM!","data":{"moo":"cow"}}'
+        expect( renderer.to_h ).to eq( status: 'error', message: 'BOOM!', data: {moo: 'cow'} )
       end
 
       context 'that is nil' do
         let(:optional) { {data: nil} }
 
         it 'includes the data element' do
-          expect( renderer.call ).to eq '{"status":"error","message":"BOOM!","data":null}'
+          expect( renderer.to_s ).to eq '{"status":"error","message":"BOOM!","data":null}'
+          expect( renderer.to_h ).to eq( status: 'error', message: 'BOOM!', data: nil )
         end
       end
     end
@@ -117,8 +121,16 @@ RSpec.describe JsendWrapper::ErrorRenderer do
       let(:optional) { {code: 4321, data: {moo: 'cow'}} }
 
       it 'also includes the data element' do
-        expect( renderer.call ).to eq '{"status":"error","message":"BOOM!","code":4321,"data":{"moo":"cow"}}'
+        expect( renderer.to_s ).to eq '{"status":"error","message":"BOOM!","code":4321,"data":{"moo":"cow"}}'
+        expect( renderer.to_h ).to eq( status: 'error', message: 'BOOM!', code:4321, data: {moo: 'cow'} )
       end
     end
+  end
+
+  describe 'optional hash missing' do
+    subject(:renderer) { JsendWrapper::ErrorRenderer }
+    let(:message) { 'BOOM!' }
+
+    it { expect{ renderer.new message }.to_not raise_error }
   end
 end

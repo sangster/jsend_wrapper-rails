@@ -16,8 +16,8 @@
 require 'jsend_wrapper/renderers/renderer'
 
 module JsendWrapper
-  # Wraps the given message in a JSend Success. JSend Successs have two required
-  # elements (status, data).
+  # Wraps the given message in a JSend Success. JSend Successes have two
+  # required elements (status, data).
   class SuccessRenderer < Renderer
     attr_reader :data
 
@@ -25,8 +25,12 @@ module JsendWrapper
       @data = data
     end
 
-    def call
+    def to_s
       %[{"status":"success","data":#{json_string data}}]
+    end
+
+    def to_h
+      { status: 'success', data: data }
     end
   end
 end

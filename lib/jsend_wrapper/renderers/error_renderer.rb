@@ -29,7 +29,7 @@ module JsendWrapper
     #@option optional [#to_i] :code a numeric code representing the error
     #@option optional [Object] :data a generic container for any other
     #  information about the error
-    def initialize(message, optional)
+    def initialize(message, optional={})
       @message  = message.to_s
       @has_code = optional.key? :code
       @has_data = optional.key? :data
@@ -40,10 +40,16 @@ module JsendWrapper
 
 
     #@return [String] the rendered JSON
-    def call
+    def to_s
       %[{"status":"error","message":#{message.inspect}#{optional}}]
     end
 
+    def to_h
+      {status: 'error', message: message}.tap do |hash|
+        hash[:code] = code if code?
+        hash[:data] = data if data?
+      end
+    end
 
   private
 

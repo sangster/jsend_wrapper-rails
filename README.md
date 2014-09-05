@@ -108,6 +108,33 @@ end
 }
 ```
 
+#### Use Renderers directly
+
+If you have some other purpose in mind, you can access the renderers directly:
+
+```ruby
+require 'jsend_wrapper/renderers/success_renderer'
+require 'jsend_wrapper/renderers/fail_renderer'
+require 'jsend_wrapper/renderers/error_renderer'
+
+# or, for all three:
+require 'jsend_wrapper/renderers'
+```
+
+##### Usages
+
+To use these renderers, construct them with the same arguments as you pass to
+the `render` statements listed above.
+
+```ruby
+renderer = JsendWrapper::SuccessRenderer @data
+renderer = JsendWrapper::FailRenderer 'a message'
+renderer = JsendWrapper::ErrorRenderer 'a message', code: 123, data: @data
+
+json = renderer.to_s
+hash = renderer.to_h
+```
+
 ## JSend Specification
 
 *This section is copied from [omniti.com](http://labs.omniti.com/labs/jsend)
