@@ -19,8 +19,8 @@ module JsendWrapper
   module Version
     # The following four lines are generated, so don't mess with them.
     MAJOR = 0
-    MINOR = 3
-    PATCH = 1
+    MINOR = 4
+    PATCH = 0
     BUILD = nil
 
     #@return [String] the current version in the form of +1.2.3.build+
