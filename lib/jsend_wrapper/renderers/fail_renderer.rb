@@ -25,8 +25,12 @@ module JsendWrapper
       @data = data
     end
 
-    def call
+    def to_s
       %[{"status":"fail","data":#{json_string data}}]
+    end
+
+    def to_h
+      { status: 'fail', data: data }
     end
   end
 end

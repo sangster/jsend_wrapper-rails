@@ -38,7 +38,7 @@ module JsendWrapper
 
     #@return [String] A string containing the rendered JSON
     def render
-      renderer.call
+      renderer.to_s
     end
 
 
