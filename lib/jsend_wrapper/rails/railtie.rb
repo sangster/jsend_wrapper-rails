@@ -13,12 +13,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-require 'rails/railtie'
+require "rails/railtie"
 
 module JsendWrapper
   module Rails
     class Railtie < ::Rails::Railtie
-      initializer 'jsend_wrapper-rails.initialization' do
+      initializer "jsend_wrapper-rails.initialization" do
         if JsendWrapper::Rails.jbuilder_available?
           JsendWrapper::Rails.install_template_handler
         end
@@ -26,10 +26,9 @@ module JsendWrapper
       end
     end
 
-
     #@return [Boolean] true if the {Jbuilder} gem is available
     def self.jbuilder_available?
-      require 'jbuilder'
+      require "jbuilder"
       true
     rescue LoadError
       $stderr.puts 'WARN: Please include the "jbuilder" gem for .jsend templates'
@@ -40,19 +39,18 @@ module JsendWrapper
     # processed with {Jbuilder}, just like .jbuilder view files, but the result
     # will be wrapped in a "success" JSend wrapper.
     def self.install_template_handler
-      require 'jsend_wrapper/rails/template_handler'
+      require "jsend_wrapper/rails/template_handler"
 
       ActionView::Template.register_template_handler \
         :jsend, JsendWrapper::Rails::TemplateHandler
     end
 
-
     # Adds the "jsend:" option to {ActiveController::Base#render}
     def self.install_render_option
-      require 'jsend_wrapper/rails/render_option'
+      require "jsend_wrapper/rails/render_option"
 
       ActionController::Renderers.add :jsend do |value, _|
-        self.content_type ||= Mime::JSON
+        self.content_type ||= Mime[:json]
         RenderOption.new(value).render
       end
     end
